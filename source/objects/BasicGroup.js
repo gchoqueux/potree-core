@@ -21,7 +21,7 @@ class BasicGroup extends THREE.Mesh
 	{
 		super(new THREE.Geometry(), new THREE.MeshBasicMaterial({opacity:0.0, wireframe:false, transparent:true}));
 
-		this.rotation.set(-Math.PI / 2, 0, 0);
+		// this.rotation.set(-Math.PI / 2, 0, 0);
 
 		this.frustumCulled = true;
 		this.pointclouds = [];
@@ -72,9 +72,9 @@ class BasicGroup extends THREE.Mesh
 		var center = box.getCenter(new THREE.Vector3());
 
 		var matrix = new THREE.Matrix4();
-		matrix.makeTranslation(center.x, -center.z, center.y);
+		matrix.makeTranslation(center.x, center.y, center.z);
 
-		var geometry = new THREE.BoxBufferGeometry(size.x, size.z, size.y);
+		var geometry = new THREE.BoxBufferGeometry(size.x, size.y, size.z);
 		geometry.applyMatrix4(matrix);
 
 		this.geometry = geometry;
