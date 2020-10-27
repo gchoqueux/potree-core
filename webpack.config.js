@@ -6,8 +6,10 @@ function resolve(name) {
 }
 
 module.exports = {
-  mode: 'development',
-  entry: "./source/Main.js",
+  // mode: 'development',
+  entry: {
+    Potree: './source/Main.js'
+  },
   module: {
     rules: [
       {
@@ -19,23 +21,36 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '.js' ],
+      modules: [path.resolve(__dirname, 'source'), 'node_modules'],
   },
+  // resolve: {
+  //   extensions: [ '.js' ],
+  // },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    sourceMapFilename: '[name].map',
-    libraryTarget: 'commonjs',
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      library: '[name]',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
   },
-  devtool: 'inline-source-map',
-  externals: {
-    three: {
-      commonjs: 'three',
-      amd: 'three',
-      root: '_',
-    },
+  // devtool: 'eval-source-map',
+  devtool: 'source-map',
+  devServer: {
+      publicPath: '/dist/',
   },
-  plugins: [
-    //new PeerDepsExternalsPlugin(),
-  ],
+  // watch: true,
+  // externals: {
+  //   three: {
+  //     commonjs: 'three',
+  //     amd: 'three',
+  //     root: '_',
+  //   },
+  // },
+  // devServer: {
+  //       contentBase: path.resolve(__dirname, "./public"),
+  //       historyApiFallback: true,
+  //       inline: true,
+  //       // open: true,
+  //       hot: true
+  //   },
 };

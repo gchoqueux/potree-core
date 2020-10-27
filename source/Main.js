@@ -1,5 +1,9 @@
 "use strict";
 
+import * as THREE from 'three';
+
+export { THREE };
+
 export {Global} from "./Global.js";
 
 export {

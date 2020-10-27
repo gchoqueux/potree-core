@@ -5,12 +5,13 @@
 		<title>Potree-Core Example</title>
 	</head>
 	<body style="background-color: #000000">
-		<script src="lib/threejs/three.min.js"></script>
+		<script src="dist/Potree.js"></script>
+        <script type="text/javascript">
+				var THREE = Potree.THREE;
+		</script>script>
 		<script src="lib/threejs/OrbitControls.js"></script>
-		<script src="build/potree.min.js"></script>
-		<script>
-			document.body.onload = function()
-			{
+        <script type="text/javascript">
+				var THREE = Potree.THREE;
 				//three.js
 				var scene = new THREE.Scene();
 				var camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
@@ -23,7 +24,7 @@
 				canvas.style.height = "100%";
 				document.body.appendChild(canvas);
 
-				var renderer = new THREE.WebGLRenderer(
+				var renderer = new THREE.WebGL1Renderer(
 				{
 					canvas: canvas,
 					alpha: true,
@@ -60,8 +61,8 @@
 				canvas.ondblclick = function(event)
 				{
 					var intesects = raycaster.intersectObject(scene, true);
-					
-					
+
+
 					if(intesects.length > 0)
 					{
 						var geometry = new THREE.SphereBufferGeometry(0.1, 32, 32);
@@ -92,7 +93,7 @@
 						points.material.opacity = 1.0;
 						points.material.wireframe = true;
 						scene.add(points);
-	
+
 						var pointcloud = e.pointcloud;
 
 						if(position !== undefined)
@@ -110,7 +111,7 @@
 					});
 				}
 
-				
+
 				function loop()
 				{
 					cube.rotation.y += 0.01;
@@ -126,13 +127,12 @@
 				{
 					var width = window.innerWidth;
 					var height = window.innerHeight;
-					
+
 					renderer.setSize(width, height);
 					camera.aspect = width / height;
 					camera.updateProjectionMatrix();
 				}
 				document.body.onresize();
-			};
 		</script>
 	</body>
 </html>

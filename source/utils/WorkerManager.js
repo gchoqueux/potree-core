@@ -3,7 +3,7 @@
 import {Global} from "../Global.js";
 // Force workers to be included
 import BinaryDecoderWorker from "../workers/BinaryDecoderWorker";
-//import LASLAZWorker from "../workers/LASLAZWorker";
+import LASLAZWorker from "../workers/LASLAZWorker";
 import LASDecoderWorker from "../workers/LASDecoderWorker";
 //import GreyhoundBinaryDecoderWorker from "../workers/GreyhoundBinaryDecoderWorker";
 import DEMWorker from "../workers/DEMWorker";
@@ -39,7 +39,7 @@ class WorkerManager
       case 0:
         return new BinaryDecoderWorker();
       case 1:
-        throw "LASLAZWorker not implemented";
+        return new LASLAZWorker();
       case 2:
         return new LASDecoderWorker();
       case 3:
