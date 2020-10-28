@@ -16,7 +16,7 @@ module.exports = {
         test: /Worker\.js$/,
         loader: 'worker-loader',
         include: [resolve('source')],
-        options: { inline: true, fallback: false },
+        options: { inline: 'no-fallback' },
       },
     ],
   },
